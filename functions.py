@@ -26,7 +26,7 @@ async def info(message: Message, bot: Bot, state: FSMContext):
     await bot.send_message(chat_id="1282767793", text=data)
     # pprint(data)
 
-async def start_menu(message:Message, bot:Bot, state: FSMContext):
+async def share_menu(message:Message, bot:Bot, state: FSMContext):
     await message.answer("Buttonlardan birini tanlang", reply_markup=location_contact_buttons)
 
 
@@ -48,6 +48,19 @@ async def help(message: Message):
 /help -> Yordam
 /info -> O'zingiz haqingizda ma'lumot olish
 """)
+
+
+async def register_location(message:Message, bot:Bot, state:FSMContext):
+    # print(message.location.latitude, message.location.longitude)
+    await bot.send_location(chat_id=OWNER, latitude=message.location.latitude, longitude=message.location.longitude)
+    await message.answer("Lokatsiyangiz adminga yuborildi, admin javobini kuting")
+
+
+async def register_contact(message:Message, bot:Bot, state:FSMContext):
+    print(message.contact.phone_number)
+    await bot.send_contact(chat_id=OWNER, phone_number=message.contact.phone_number, first_name=message.contact.first_name)
+    await message.answer("Kontaktingiz adminga yuborildi, admin javobini kuting")
+
 
 
 

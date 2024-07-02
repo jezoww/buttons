@@ -27,8 +27,9 @@ async def main(dp):
     )
 
     dp.startup.register(start)
-    dp.message.register(start_menu, Command("start"))
-    dp.message.register(location_contact_buttons, Command("share"))
+    dp.message.register(share_menu, Command("start"))
+    dp.message.register(register_location, F.location)
+    dp.message.register(register_contact, F.contact)
     dp.message.register(bot_start, Command("start"))
     dp.message.register(help, Command("help"))
     dp.message.register(info, Command("info"))
